@@ -11,7 +11,7 @@ public class MyDialog extends JDialog {
     private JButton buttonCancel;
     private JLabel label1;
     private JLabel label2;
-    private JTextField taskName;
+    private JTextField taskNameText;
 
     public MyDialog() {
         setContentPane(contentPane);
@@ -47,12 +47,18 @@ public class MyDialog extends JDialog {
     }
 
     private void onOK() {
-        MainUI.UI.resetDataPanel(OrderEdit.INSTANCE.getData());
+        String taskName = taskNameText.getText();
+
+        OrderEdit orderEdit = new OrderEdit();
+        orderEdit.getTaskNameText().setText(taskName);
+
+        MainUI.UI.resetDataPanel(orderEdit.getRootPanel());
+
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
+        //TODO add your code here if necessary
         dispose();
     }
 
@@ -74,5 +80,7 @@ public class MyDialog extends JDialog {
         label2 = new JLabel("bbb");
         label2.setBounds(10, 50, 200, 30);
         ser2.register(label2);
+
+        taskNameText = new JTextField();
     }
 }

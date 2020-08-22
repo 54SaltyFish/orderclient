@@ -3,7 +3,6 @@ package form;
 import jcomponent.Navigation;
 import jcomponent.NavigationBar;
 import jcomponent.TablePopupMenu;
-import jlistenner.ResetDataPanelListener;
 import lombok.Data;
 
 import javax.swing.*;
@@ -12,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 @Data
 public class MainUI {
-    public static final JFrame frame = new JFrame("MyUI");
+    public static final JFrame frame = new JFrame("MainUI");
     public static final MainUI UI = new MainUI();
     private JPanel rootPanel;
     private JToolBar toolBar;
@@ -66,11 +65,11 @@ public class MainUI {
         dataPanel = new JPanel();
         Navigation nav1 = new Navigation();
         nav1.addNavMouseListener(bar);
-        nav1.setPanel(new NavPanal1(new ResetDataPanelListener(dataPanel, OrderCatalog.INSTANCE.getRootPanel())));
+        nav1.setPanel(new NavPanal(dataPanel));
 
         Navigation nav2 = new Navigation();
         nav2.addNavMouseListener(bar);
-        nav2.setPanel(new NavPanal1(new ResetDataPanelListener(dataPanel, OrderAudit.createJPanel())));
+        nav2.setPanel(new NavPanal(dataPanel));
         Navigation nav3 = new Navigation();
         nav3.addNavMouseListener(bar);
 
@@ -81,25 +80,26 @@ public class MainUI {
 
 //        dataPanel.add(Table3.DATA3.getRootPanel());
         dataPanel.add(OrderCatalog.INSTANCE.getRootPanel());
-        OrderCatalog.INSTANCE.getTable().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON3)
-                    new TablePopupMenu().showPopupMenu(OrderCatalog.INSTANCE.getTable(), e.getX(), e.getY());
-            }
-        });
+//        OrderCatalog.INSTANCE.getTable().addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if (e.getButton() == MouseEvent.BUTTON3)
+//                    new TablePopupMenu().showPopupMenu(OrderCatalog.INSTANCE.getTable(), e.getX(), e.getY());
+//            }
+//        });
+
 //        dataPanel.add(BorderLayout.CENTER, new Tabel1().getRootPanel());
 //        dataPanel = Tabel1.INSTANCE.getRootPanel();
     }
 
-    public void resetDataPanel(JPanel tablePanel) {
-        if (dataPanel.getComponents()[0] == tablePanel) {
+    public static void resetDataPanel(JPanel tablePanel) {
+        if (UI.dataPanel.getComponents()[0] == tablePanel) {
             return;
         }
-        dataPanel.removeAll();
-        dataPanel.repaint();
-        dataPanel.add(tablePanel);
-        dataPanel.revalidate();
+        UI.dataPanel.removeAll();
+        UI.dataPanel.repaint();
+        UI.dataPanel.add(tablePanel);
+        UI.dataPanel.revalidate();
     }
 
 //    /**

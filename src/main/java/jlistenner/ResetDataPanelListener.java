@@ -15,7 +15,7 @@ public class ResetDataPanelListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("click " + tablePanel.getName());
+//        System.out.println("click " + tablePanel.getName());
         if (dataPanel.getComponents()[0] == tablePanel) {
             return;
         }

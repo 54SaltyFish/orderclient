@@ -7,20 +7,21 @@ import javax.swing.table.DefaultTableModel;
 
 @Data
 public class OrderAudit {
-    private JPanel data;
+    public static final OrderAudit INSTANCE = new OrderAudit();
+    private JPanel rootPanel;
     private JTable table1;
     private JLabel label;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("OrderAudit");
-        frame.setContentPane(new OrderAudit().data);
+        frame.setContentPane(new OrderAudit().rootPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     public static JPanel createJPanel() {
-        return new OrderAudit().data;
+        return new OrderAudit().rootPanel;
     }
 
     private void createUIComponents() {

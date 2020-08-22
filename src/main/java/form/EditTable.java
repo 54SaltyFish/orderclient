@@ -172,22 +172,22 @@ public class EditTable {
     Object[][] datas;
     DefaultTableModel table() {
         heads = new String[] {
-                "序号", "操作单位", "项号", "操作命令内容", "类型", "状态", "注意事项"
+                "序号", "操作单位", "项号", "操作命令内容"/*, "类型", "状态"*/, "注意事项"
         };
 
-        datas = new String[5][7];
+        datas = new String[5][5];
         for (int i = 0; i < 5; i++) {
             datas[i][0] = i + 1 + "";
             datas[i][2] = "" + i;
             datas[i][3] = "第" + (i+1) + "步";
-            datas[i][4] = "普通命令";
-            datas[i][5] = "待下令";
+//            datas[i][4] = "普通命令";
+//            datas[i][5] = "待下令";
         }
 
         DefaultTableModel tableModel=new DefaultTableModel(datas, heads){
             public boolean isCellEditable(int row, int column)
             {
-                return false;
+                return true;
             }
         };
 
